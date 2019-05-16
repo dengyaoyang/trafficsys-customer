@@ -8,6 +8,7 @@ import com.cecgw.cq.trafficsys.trafficsyscustomer.remote.ConsumerService;
 import com.cecgw.cq.trafficsys.trafficsyscustomer.repository.CustomerRepo;
 import com.cecgw.cq.trafficsys.trafficsyscustomer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,8 @@ public class CustomerController {
     ConsumerService consumerService;
     @Autowired
     CustomerService customerService;
+    @Value("customer-profile")
+    private String cusPro;
 
     @RequestMapping("/getCustomerDto")
     public CustomerDto getCustomerDto(){
@@ -41,5 +44,10 @@ public class CustomerController {
     @RequestMapping("saveCustomer")
     public Customer saveCustomer(Customer customer){
         return customerService.save(customer);
+    }
+
+    @RequestMapping("/cusPro")
+    public String cusPro(){
+        return cusPro;
     }
 }
